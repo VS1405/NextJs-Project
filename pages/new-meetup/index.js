@@ -1,6 +1,11 @@
-function Hello() {
+import NewMeetupForm from "@/components/meetups/NewMeetupForm"
+
+function NewMeetUpData() {
+    const addMeetupHandler =(enterredMeetupdata)=>{
+console.log(enterredMeetupdata)
+    }
     return(
-        <h3>Nice</h3>
+       <NewMeetupForm onAddMeetup={addMeetupHandler} />
     )
 }
-export default Hello
+export default NewMeetUpData;
