@@ -5,13 +5,15 @@
   align-items: center;
   justify-content: space-between;
   background-color: #77002e;
-  padding: 0 10%;
+  /* padding: 0 10%; */
+  margin: 0;
 }
 
 .logo {
   font-size: 2rem;
   color: white;
   font-weight: bold;
+  margin-left: 2.5rem;
 }
 
 .header ul {
@@ -24,6 +26,7 @@
 
 .header li {
   margin-left: 3rem;
+  padding-right: 10px;
 }
 
 .header a {

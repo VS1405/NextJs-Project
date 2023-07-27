@@ -1,10 +1,8 @@
 .item {
-  /* margin: 1rem 0; */
-  width: 40%;
-  text-align: center;
+  margin: 1rem ;
+  width: 50%;
   margin: 0 auto;
-  object-fit: cover;
-  margin-bottom: 15px;
+  margin-bottom: 2rem;
 }
 
 .image {
@@ -22,7 +20,7 @@
 
 .content {
   text-align: center;
-  padding: 0.7rem;
+  padding: 1rem;
 }
 
 .content h3 {
@@ -31,7 +29,7 @@
 }
 
 .actions {
-  padding: 1rem;
+  padding: 1.5rem;
   text-align: center;
 }
 
