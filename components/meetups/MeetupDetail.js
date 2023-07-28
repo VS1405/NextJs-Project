@@ -1,4 +1,5 @@
 const { Fragment } = require("react");
+import MainNavigation from '../layout/MainNavigation';
 import classes from './MeetupDetail.module.css'
 
 function MeetupDetail (props){

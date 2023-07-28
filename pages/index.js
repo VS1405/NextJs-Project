@@ -10,7 +10,7 @@ function HomePage(props) {
       <MeetupList meetups={props.Meetups} />
     </Fragment>
   );
-}
+};
 
 // export async function getServerSideProps(context) {
 //     const req = context.req;
@@ -47,7 +47,7 @@ function HomePage(props) {
 //   };
 // }
 
-const CONNECTION_RETRY_ATTEMPTS = 3;
+const CONNECTION_RETRY_ATTEMPTS = 5;
 const CONNECTION_RETRY_INTERVAL_MS = 3000;
 
 export async function getStaticProps() {
@@ -58,15 +58,18 @@ export async function getStaticProps() {
   while (connectionAttempts < CONNECTION_RETRY_ATTEMPTS) {
     try {
       const client = await MongoClient.connect(
-        "mongodb+srv://varshamhaske97:yhlinmaoEqhXfcjs@cluster0.m6hewrz.mongodb.net"
+        "mongodb+srv://varshamhaske97:cwDJU93BUcAl2aVV@cluster0.m6hewrz.mongodb.net"
       );
+      console.log('Client Connected to MongoDB')
+
       const db = client.db("MeetUps");
 
-      const meetupCollection = db.collection("meetup");
+      const meetupCollection = db.collection("meetups");
       meetups = await meetupCollection.find().toArray();
       client.close();
 
       break; // Break the loop if the connection is successful
+
     } catch (error) {
       console.error(
         `Error connecting to MongoDB (Attempt ${connectionAttempts + 1}):`,

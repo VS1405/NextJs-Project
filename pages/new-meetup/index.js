@@ -1,6 +1,8 @@
 import NewMeetupForm from "@/components/meetups/NewMeetupForm";
 
 function NewMeetUpData() {
+
+
   async function addMeetupHandler(enterredMeetupdata) {
     try {
       console.log("I add new meet up");
@@ -22,6 +24,8 @@ function NewMeetUpData() {
     }
   }
 
-  return <NewMeetupForm onAddMeetup={addMeetupHandler} />;
+  return <NewMeetupForm onAddMeetup={addMeetupHandler} />  ;
+
+
 }
 export default NewMeetUpData;
