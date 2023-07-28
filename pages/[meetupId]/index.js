@@ -1,13 +1,17 @@
 const { Fragment } = require("react");
 import MeetupDetail from "@/components/meetups/MeetupDetail";
 import { MongoClient, ObjectId } from "mongodb";
+import Head from "next/head";
 
 function MeetupDetails(props) {
   return (
     <Fragment>
+      <Head>
+        <title>{props.meetUpData.title}</title>
+      </Head>
       <MeetupDetail
-      image={props.meetUpData.image}
         title={props.meetUpData.title}
+        image={props.meetUpData.image}
         address={props.meetUpData.address}
       />
     </Fragment>
@@ -17,52 +21,54 @@ function MeetupDetails(props) {
 export async function getStaticPaths(params) {
   try{
     const client = await MongoClient.connect(
-      "mongodb+srv://varshamhaske97:cwDJU93BUcAl2aVV@cluster0.m6hewrz.mongodb.net"
+      "mongodb+srv://varshamhaske97:fX2Y1KZmbCjubXTX@cluster0.m6hewrz.mongodb.net"
     );
-    const db = (client).db("MeetUps");
+    const db = client.db("MeetUps");
     console.log("Client connect for fetch details");
   
     const meetupCollection = db.collection("meetups");
   
     const meetUPID = await meetupCollection.find({}, { _id: 1 }).toArray();
    
-    (client).close();
+    client.close();
   
     return {
-      fallback: true,
-      paths: meetUPID.map((meetId) => ({
-        params: { meetUpId: meetId._id.toString() },
-      })),
-      // [{params: { meetupId: "m1" }, },
-      //   {params: { meetupId: "m2" },},],
+      fallback: 'blocking',
+      paths:  meetUPID.map((meetId) => ( {
+        params: { meetupId: meetId._id.toString() },
+      }))
+
+      // [  {params: { meetupId: "m1" }},
+      // {params: { meetupId: "m2" },}, ]
+     
     };
 
   }
   catch(error){
     console.log("Error while fetching Data")
-    return{
-      fallback: true,
-      paths: []
-    }
+    // return{
+    //   fallback: true,
+    //   paths: []
+    // }
   }
  
  
 }
-
+// getStaticProps function
 export async function getStaticProps(context) {
 
   const meetupId = context.params.meetupId;
 console.log(meetupId)
 
 try{
-  const client = MongoClient.connect(
-    "mongodb+srv://varshamhaske97:cwDJU93BUcAl2aVV@cluster0.m6hewrz.mongodb.net"
+  const client = await MongoClient.connect(
+    "mongodb+srv://varshamhaske97:fX2Y1KZmbCjubXTX@cluster0.m6hewrz.mongodb.net"
   );
   const db = client.db("MeetUps");
   console.log("Client connect for fetch details");
   const meetupCollection = db.collection("meetups");
-
-  const selectMeetUp = await meetupCollection.findOne({ _id : ObjectId(meetupId)})
+console.log(meetupCollection)
+  const selectMeetUp = await meetupCollection.findOne({ _id : new ObjectId(meetupId)})
 
   console.log(selectMeetUp);
   (client).close();
@@ -76,7 +82,7 @@ try{
       //   address: "A some city 5, some city",
       // },
       meetUpData:  {
-        id: selectMeetUp._id.toString(), 
+        id: selectMeetUp._id.toString() , 
         title:selectMeetUp.title, 
         address: selectMeetUp.address, 
         image: selectMeetUp.image,

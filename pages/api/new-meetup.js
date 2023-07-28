@@ -11,10 +11,10 @@ async function Handler(req, res) {
       }
 
       const client = await MongoClient.connect(
-        "mongodb+srv://varshamhaske97:cwDJU93BUcAl2aVV@cluster0.m6hewrz.mongodb.net/MeetUps?retryWrites=true&w=majority"
+        "mongodb+srv://varshamhaske97:fX2Y1KZmbCjubXTX@cluster0.m6hewrz.mongodb.net/MeetUps?retryWrites=true&w=majority"
       );
 
-      console.log('Conected to MongoDB!')
+      console.log('Conected to MongoDB at initially!')
       const db = client.db("MeetUps");
       const meetupCollection = db.collection("meetups");
 
@@ -23,6 +23,7 @@ async function Handler(req, res) {
       client.close();
 
       res.status(201).json({ message: "Meetup inserted!" });
+
     } catch (error) {
       console.error("Error inserting meetup:", error.message);
       res.status(500).json({ error: "Failed to insert meetup data." });

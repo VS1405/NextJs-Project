@@ -1,4 +1,7 @@
 import NewMeetupForm from "@/components/meetups/NewMeetupForm";
+import { Fragment } from "react";
+import Head from "next/head";
+
 
 function NewMeetUpData() {
 
@@ -24,8 +27,15 @@ function NewMeetUpData() {
     }
   }
 
-  return <NewMeetupForm onAddMeetup={addMeetupHandler} />  ;
-
+  return (
+  <Fragment>
+      <Head>
+        <title>Add New MeetUp</title>
+        <meta name="Discription" content="Add your own meetups!" />
+      </Head>
+    <NewMeetupForm onAddMeetup={addMeetupHandler} />
+  </Fragment>
+  );
 
 }
 export default NewMeetUpData;

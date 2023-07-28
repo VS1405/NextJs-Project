@@ -2,10 +2,15 @@ import { MongoClient } from "mongodb";
 import Layout from "@/components/layout/Layout";
 import MeetupList from "@/components/meetups/MeetupList";
 import { Fragment } from "react";
+import Head from "next/head";
 
 function HomePage(props) {
   return (
     <Fragment>
+      <Head>
+        <title>React MeetUp Project</title>
+        <meta name="Discription" content="Browser a huge list of acive react meetups!" />
+      </Head>
       <Layout />
       <MeetupList meetups={props.Meetups} />
     </Fragment>
@@ -58,7 +63,7 @@ export async function getStaticProps() {
   while (connectionAttempts < CONNECTION_RETRY_ATTEMPTS) {
     try {
       const client = await MongoClient.connect(
-        "mongodb+srv://varshamhaske97:cwDJU93BUcAl2aVV@cluster0.m6hewrz.mongodb.net"
+        "mongodb+srv://varshamhaske97:fX2Y1KZmbCjubXTX@cluster0.m6hewrz.mongodb.net"
       );
       console.log('Client Connected to MongoDB')
 
