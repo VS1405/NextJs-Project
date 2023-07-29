@@ -1,7 +1,8 @@
-import { useRef } from 'react';
+import { useRef , Fragment } from 'react';
 
 import Card from '../ui/Card';
 import classes from './NewMeetupForm.module.css';
+import Layout from '../layout/Layout';
 
 function NewMeetupForm(props) {
   const titleInputRef = useRef();
@@ -33,6 +34,8 @@ function NewMeetupForm(props) {
   }
 
   return (
+    <Fragment>
+      <Layout />
     <Card>
       <form className={classes.form} onSubmit={submitHandler}>
         <div className={classes.control}>
@@ -61,6 +64,7 @@ function NewMeetupForm(props) {
         </div>
       </form>
     </Card>
+    </Fragment>
   );
 }
 

@@ -30,7 +30,7 @@ function NewMeetUpData() {
   return (
   <Fragment>
       <Head>
-        <title>Add New MeetUp</title>
+        <title>New MeetUp</title>
         <meta name="Discription" content="Add your own meetups!" />
       </Head>
     <NewMeetupForm onAddMeetup={addMeetupHandler} />
